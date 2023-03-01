@@ -27,6 +27,20 @@ pub enum ProfilePictureType {
     Image,
     /// A low quality thumbnail
     Preview,
+    /// Just as a fallback incase there is any other value
+    Value(String),
+}
+
+impl FromStr for ProfilePictureType {
+    type Err = RhustAppError;
+
+    fn from_str(input: &str) -> Result<Self, RhustAppError> {
+        match input {
+            "image" => Ok(Self::Image),
+            "preview" => Ok(Self::Preview),
+            _ => Ok(Self::Value(input.to_string())),
+        }
+    }
 }
 
 /// Contains the ID and URL for a WhatsApp user's profile picture or a group's photo.
