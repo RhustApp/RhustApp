@@ -7,7 +7,7 @@ use crate::RhustAppError;
 use super::JID;
 
 pub enum GroupMemberAddMode {
-    /// If added by the admin.
+    /// ("admin_add") If added by the admin.
     AdminAdd,
     /// Just as a fallback incase there is any other value
     Value(String),
@@ -65,6 +65,7 @@ pub struct GroupParticipantAddRequest {
 }
 
 pub enum MembershipApprovalMode {
+    /// "request_required"
     RequestRequired,
     Value(String),
 }
@@ -133,8 +134,11 @@ pub struct GroupDelete {
 }
 
 pub enum GroupLinkChangeType {
+    /// "parent_group"
     Parent,
+    /// "sub_group"
     Sub,
+    /// "sibling_group"
     Sibling,
     Value(String),
 }
@@ -153,7 +157,9 @@ impl FromStr for GroupLinkChangeType {
 }
 
 pub enum GroupUnlinkReason {
+    /// "unlink_group"
     UnlinkGroup,
+    /// "delete_parent"
     DeleteParent,
     Value(String),
 }

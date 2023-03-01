@@ -3,7 +3,9 @@ use std::str::FromStr;
 use crate::RhustAppError;
 
 pub enum Presence {
+    /// "available"
     Available,
+    /// "unavailable"
     Unavailable,
     Value(String),
 }
@@ -21,7 +23,9 @@ impl FromStr for Presence {
 }
 
 pub enum ChatPresence {
+    /// "composing"
     Composing,
+    /// "paused"
     Paused,
     Value(String),
 }
@@ -39,7 +43,9 @@ impl FromStr for ChatPresence {
 }
 
 pub enum ChatPresenceMedia {
+    /// ""
     Text,
+    /// "audio"
     Audio,
     Value(String),
 }

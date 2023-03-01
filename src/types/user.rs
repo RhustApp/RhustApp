@@ -23,9 +23,9 @@ pub struct UserInfo {
 }
 
 pub enum ProfilePictureType {
-    /// Full resolution picture
+    /// ("image") Full resolution picture
     Image,
-    /// A low quality thumbnail
+    /// ("preview") A low quality thumbnail
     Preview,
     /// Just as a fallback incase there is any other value
     Value(String),
@@ -114,9 +114,13 @@ pub struct ContactQRLinkTarget {
 
 /// Possible privacy setting values.
 pub enum PrivacySetting {
+    /// ""
     Undefined,
+    /// "all"
     All,
+    /// "contacts"
     Contacts,
+    /// "none"
     None,
 }
 
@@ -148,11 +152,11 @@ pub struct PrivacySettings {
 
 /// Type of list in `StatusPrivacy`
 pub enum StatusPrivacyType {
-    /// Means statuses are sent to all contacts.
+    /// ("contacts") Means statuses are sent to all contacts.
     Contacts,
-    /// Means statuses are sent to all contacts, except the one on the list.
+    /// ("blacklist") Means statuses are sent to all contacts, except the one on the list.
     Blacklist,
-    /// Means statuses are only sent to users on the list.
+    /// ("whitelist") Means statuses are only sent to users on the list.
     Whitelist,
 }
 
