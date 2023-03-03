@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use time::PrimitiveDateTime;
+use time::OffsetDateTime;
 
 use crate::RhustAppError;
 
@@ -39,7 +39,7 @@ pub struct GroupInfo {
     pub group_linked_parent: Option<GroupLinkedParent>,
     pub group_is_default_sub: Option<GroupIsDefaultSub>,
 
-    pub creation_time: PrimitiveDateTime,
+    pub creation_time: OffsetDateTime,
 
     pub participant_version_id: String,
     pub participants: Vec<GroupParticipant>,
@@ -61,7 +61,7 @@ pub struct GroupParticipant {
 
 pub struct GroupParticipantAddRequest {
     pub code: String,
-    pub expiration: PrimitiveDateTime,
+    pub expiration: OffsetDateTime,
 }
 
 pub enum MembershipApprovalMode {
@@ -98,7 +98,7 @@ pub struct GroupIsDefaultSub {
 /// Contains the name of a group along with metadata of who set it and when.
 pub struct GroupName {
     pub name: String,
-    pub name_set_at: PrimitiveDateTime,
+    pub name_set_at: OffsetDateTime,
     pub name_set_by: JID,
 }
 
@@ -106,7 +106,7 @@ pub struct GroupName {
 pub struct GroupTopic {
     pub topic: String,
     pub topic_id: String,
-    pub topic_set_at: PrimitiveDateTime,
+    pub topic_set_at: OffsetDateTime,
     pub topic_set_by: JID,
     pub topic_deleted: bool,
 }

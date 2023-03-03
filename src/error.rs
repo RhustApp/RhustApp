@@ -1,6 +1,7 @@
 use core::panic::Location;
 use std::fmt;
 
+#[derive(Clone)]
 pub struct RhustAppError {
     pub description: String,
     pub error: Option<String>,

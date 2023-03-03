@@ -1,7 +1,9 @@
 use lazy_static::lazy_static;
 use std::collections::HashMap;
 
-pub const DICT_VERSION: i32 = 2;
+use crate::{new_rhustapp_error, RhustAppError};
+
+pub const DICT_VERSION: u8 = 2;
 
 lazy_static! {
     pub static ref SINGLE_BYTE_TOKENS: Vec<String> = vec![
@@ -1316,31 +1318,40 @@ fn get_double_byte_tokens_map() -> HashMap<String, DoubleByteTokenIndex> {
     map
 }
 
-pub fn get_single_token(index: u8) -> Option<String> {
+pub fn get_single_token(index: u8) -> Result<String, RhustAppError> {
     match SINGLE_BYTE_TOKENS.get(usize::from(index)) {
-        Some(token) => Some(token.to_string()),
-        None => None,
+        Some(token) => Ok(token.to_string()),
+        None => Err(new_rhustapp_error(
+            &format!("index out of single byte token bounds: {index}"),
+            None,
+        )),
     }
 }
 
-pub fn get_double_token(dict_index: u8, index: u8) -> Option<String> {
+pub fn get_double_token(dict_index: u8, index: u8) -> Result<String, RhustAppError> {
     match DOUBLE_BYTE_TOKENS.get(usize::from(dict_index)) {
         Some(tokens) => match tokens.get(usize::from(index)) {
-            Some(token) => Some(token.to_string()),
-            None => None,
+            Some(token) => Ok(token.to_string()),
+            None => Err(new_rhustapp_error(
+                &format!("index out of double byte token index {dict_index} bounds: {index}"),
+                None,
+            )),
         },
-        None => None,
+        None => Err(new_rhustapp_error(
+            &format!("index out of double byte token bounds {dict_index}-{index}"),
+            None,
+        )),
     }
 }
 
-pub fn index_of_single_token(token: &String) -> Option<u8> {
+pub fn index_of_single_token(token: &str) -> Option<u8> {
     match SINGLE_BYTE_TOKEN_INDEX.get(token) {
         Some(index) => Some(index.to_owned()),
         None => None,
     }
 }
 
-pub fn index_of_double_token(token: &String) -> Option<(u8, u8)> {
+pub fn index_of_double_token(token: &str) -> Option<(u8, u8)> {
     match DOUBLE_BYTE_TOKEN_INDEX.get(token) {
         Some(index) => Some((index.dictionary, index.index)),
         None => None,
@@ -1362,4 +1373,4 @@ pub const BINARY20: u8 = 253;
 pub const BINARY32: u8 = 254;
 pub const NIBBLE8: u8 = 255;
 
-pub const PACKED_MAX: u8 = 127;
+pub const PACKED_MAX: usize = 127;

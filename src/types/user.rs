@@ -66,7 +66,7 @@ pub struct ContactInfo {
 
 /// Contains the cached local settings for a chat.
 pub struct LocalChatSettings {
-    pub muted_until: time::PrimitiveDateTime,
+    pub muted_until: time::OffsetDateTime,
     pub pinned: bool,
     pub archived: bool,
 }

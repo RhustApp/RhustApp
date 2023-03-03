@@ -9,4 +9,18 @@ libsignal-protocol = { path = "./libsignal" }
 log = "0.4.17"
 protobuf = "3.2.0"
 lazy_static = "1.4.0"
-time = { version = "0.3.20", features = ["rand", "serde", "serde-well-known", "macros", "local-offset", "formatting"] }
+time = { version = "0.3.20", features = [
+    "rand",
+    "serde",
+    "serde-well-known",
+    "macros",
+    "local-offset",
+    "formatting",
+] }
+flate2 = { version = "1.0.25", features = [
+    "zlib",
+    "zlib-ng",
+], default-features = false }
+hex = "0.4.3"
+tungstenite = { version = "0.18.0", features = ["native-tls"] }
+url = "2.3.1"

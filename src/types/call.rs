@@ -5,7 +5,7 @@ pub struct BasicCallMetadata {
     /// This is the chat (user/group) in which the call was created.
     pub from: JID,
     /// This is the timestamp at which the event started.
-    pub timestamp: time::PrimitiveDateTime,
+    pub timestamp: time::OffsetDateTime,
     /// This is the user who initiated the call.
     pub call_creator: JID,
     /// The unique ID for a call event.

@@ -56,6 +56,15 @@ impl JID {
         }
     }
 
+    pub fn new_ad(user: &str, agent: u8, device: u8) -> Self {
+        Self {
+            user: user.to_string(),
+            agent: Some(agent),
+            device: Some(device),
+            server: DEFAULT_USER_SERVER.to_string(),
+        }
+    }
+
     /// Returns whether the JID is AD-JID or not.
     pub fn is_ad(&self) -> bool {
         self.agent.is_some() && self.device.is_some()

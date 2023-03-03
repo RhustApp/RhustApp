@@ -1,4 +1,4 @@
-use time::PrimitiveDateTime;
+use time::OffsetDateTime;
 
 use super::{VerifiedName, JID};
 
@@ -47,7 +47,7 @@ pub struct MessageInfo {
     pub id: String,
     pub source: MessageSource,
     pub r#type: String,
-    pub timestamp: PrimitiveDateTime,
+    pub timestamp: OffsetDateTime,
     pub category: String,
     pub multicast: bool,
     pub media_type: String,
